@@ -1,0 +1,151 @@
+name: "xterm"
+version: "0.1.0"
+description: "Xterm, for TurboWarp"
+author: "Kamix Fox"
+license: "Apache-2.0"
+
+entryPoint: "src/index.js"
+outputPath: "dist/extension.js"
+
+extension:
+  id: "xterm"
+  name: "Xterm"
+  className: "XtermExtension"
+  color1: "#61afef"
+  menus:
+    themes:
+      acceptReporters: true
+      items:
+        - "atom-one-dark"
+        - "atom-one-light"
+        - "dracula"
+        - "solarized"
+    levels:
+      acceptReporters: true
+      items:
+        - "info"
+        - "success"
+        - "warn"
+        - "error"
+        - "debug"
+        - "start"
+        - "trace"
+        - "fatal"
+    onOff:
+      acceptReporters: true
+      items:
+        - "on"
+        - "off"
+
+blocks:
+  - blockType: label
+    text: "Terminal"
+  - opcode: initializeTerminal
+    blockType: command
+    text: "initialize terminal"
+  - opcode: showTerminal
+    blockType: command
+    text: "show terminal"
+  - opcode: hideTerminal
+    blockType: command
+    text: "hide terminal"
+  - opcode: clearTerminal
+    blockType: command
+    text: "clear terminal"
+  - "---"
+  - blockType: label
+    text: "Prompt"
+  - opcode: promptUser
+    blockType: reporter
+    text: "prompt [TEXT]"
+    arguments:
+      TEXT:
+        type: string
+        defaultValue: "Enter command: "
+  - "---"
+  - blockType: label
+    text: "Logging & Filters"
+  - opcode: logMessage
+    blockType: command
+    text: "log [LEVEL] scope [SCOPE] [TEXT]"
+    arguments:
+      LEVEL:
+        type: string
+        menu: levels
+        defaultValue: "info"
+      SCOPE:
+        type: string
+        defaultValue: ""
+      TEXT:
+        type: string
+        defaultValue: "System initialized"
+  - opcode: setLogLevelFilter
+    blockType: command
+    text: "show only log levels [LEVELS]"
+    arguments:
+      LEVELS:
+        type: string
+        defaultValue: "*"
+  - opcode: setLogScopeFilter
+    blockType: command
+    text: "show only log scopes [SCOPES]"
+    arguments:
+      SCOPES:
+        type: string
+        defaultValue: "*"
+  - opcode: clearLogFilters
+    blockType: command
+    text: "clear log filters"
+  - opcode: setTimestamps
+    blockType: command
+    text: "enable timestamps [STATE]"
+    arguments:
+      STATE:
+        type: string
+        menu: onOff
+        defaultValue: "off"
+  - "---"
+  - blockType: label
+    text: "Formatting"
+  - opcode: boxText
+    blockType: command
+    text: "box [TEXT]"
+    arguments:
+      TEXT:
+        type: string
+        defaultValue: "Task Completed Successfully"
+  - opcode: divider
+    blockType: command
+    text: "divider"
+  - opcode: dividerLabeled
+    blockType: command
+    text: "divider labeled [TEXT]"
+    arguments:
+      TEXT:
+        type: string
+        defaultValue: "Section"
+  - "---"
+  - blockType: label
+    text: "Output & Themes"
+  - opcode: writeToTerminal
+    blockType: command
+    text: "write [TEXT] to terminal"
+    arguments:
+      TEXT:
+        type: string
+        defaultValue: "Hello "
+  - opcode: writeLineToTerminal
+    blockType: command
+    text: "write line [TEXT] to terminal"
+    arguments:
+      TEXT:
+        type: string
+        defaultValue: "World!"
+  - opcode: setTheme
+    blockType: command
+    text: "set terminal theme to [THEME]"
+    arguments:
+      THEME:
+        type: string
+        menu: themes
+        defaultValue: "atom-one-dark"
