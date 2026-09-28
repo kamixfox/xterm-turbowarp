@@ -165,6 +165,12 @@ export function setup() {
   const XTERM_JS_URL = "https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.js";
   const XTERM_FIT_URL =
     "https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.js";
+  const XTERM_CSS_INTEGRITY =
+    "sha384-LJcOxlx9IMbNXDqJ2axpfEQKkAYbFjJfhXexLfiRJhjDU81mzgkiQq8rkV0j6dVh";
+  const XTERM_JS_INTEGRITY =
+    "sha384-/nfmYPUzWMS6v2atn8hbljz7NE0EI1iGx34lJaNzyVjWGDzMv+ciUZUeJpKA3Glc";
+  const XTERM_FIT_INTEGRITY =
+    "sha384-AQLWHRKAgdTxkolJcLOELg4E9rE89CPE2xMy3tIRFn08NcGKPTsELdvKomqji+DL";
 
   // Kept as an array of single-line rules: Twext re-indents setup code but leaves
   // the contents of multi-line template literals untouched.
@@ -212,13 +218,19 @@ export function setup() {
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.href = XTERM_CSS_URL;
+      link.integrity = XTERM_CSS_INTEGRITY;
+      link.crossOrigin = "anonymous";
       document.head.appendChild(link);
 
       const script = document.createElement("script");
       script.src = XTERM_JS_URL;
+      script.integrity = XTERM_JS_INTEGRITY;
+      script.crossOrigin = "anonymous";
       script.onload = () => {
         const fitScript = document.createElement("script");
         fitScript.src = XTERM_FIT_URL;
+        fitScript.integrity = XTERM_FIT_INTEGRITY;
+        fitScript.crossOrigin = "anonymous";
         fitScript.onload = resolve;
         fitScript.onerror = reject;
         document.head.appendChild(fitScript);
@@ -283,20 +295,23 @@ export function setup() {
 
   function onTerminalData(data) {
     const prompt = promptQueue[0];
-    if (!prompt) return;
-    if (data === "\r") {
-      terminal.write("\r\n");
-      promptQueue.shift();
-      prompt.resolve(prompt.buffer);
-      startNextPrompt();
-    } else if (data === "\x7f") {
-      if (prompt.buffer.length > 0) {
-        prompt.buffer = prompt.buffer.slice(0, -1);
-        terminal.write("\b \b");
+    if (!prompt || data.startsWith("\x1b")) return;
+    for (const character of data) {
+      if (character === "\r") {
+        terminal.write("\r\n");
+        promptQueue.shift();
+        prompt.resolve(prompt.buffer);
+        startNextPrompt();
+        return;
+      } else if (character === "\x7f") {
+        if (prompt.buffer.length > 0) {
+          prompt.buffer = prompt.buffer.slice(0, -1);
+          terminal.write("\b \b");
+        }
+      } else if (character >= " " && !(character >= "\x80" && character <= "\x9f")) {
+        prompt.buffer += character;
+        terminal.write(character);
       }
-    } else {
-      prompt.buffer += data;
-      terminal.write(data);
     }
   }
 
@@ -534,8 +549,8 @@ export function setup() {
   }
 
   function applyTheme(name) {
-    if (!terminal) return;
     activeTheme = THEMES[String(name).toLowerCase()] ? String(name).toLowerCase() : DEFAULT_THEME;
+    if (!terminal) return;
     terminal.options.theme = THEMES[activeTheme];
     if (container) {
       container.style.backgroundColor = THEMES[activeTheme].background;
