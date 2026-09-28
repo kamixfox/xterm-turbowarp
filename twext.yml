@@ -1,6 +1,6 @@
 name: "xterm"
 version: "0.1.0"
-description: "Xterm, for TurboWarp"
+description: "A terminal emulator overlay for the stage, powered by xterm.js."
 author: "Kamix Fox"
 license: "Apache-2.0"
 
@@ -15,31 +15,15 @@ extension:
   menus:
     themes:
       acceptReporters: true
-      items:
-        - "atom-one-dark"
-        - "atom-one-light"
-        - "dracula"
-        - "solarized"
+      items: ["atom-one-dark", "atom-one-light", "dracula", "solarized"]
     levels:
       acceptReporters: true
-      items:
-        - "info"
-        - "success"
-        - "warn"
-        - "error"
-        - "debug"
-        - "start"
-        - "trace"
-        - "fatal"
+      items: ["info", "success", "warn", "error", "debug", "start", "trace", "fatal"]
     onOff:
       acceptReporters: true
-      items:
-        - "on"
-        - "off"
+      items: ["on", "off"]
 
 blocks:
-  - blockType: label
-    text: "Terminal"
   - opcode: initializeTerminal
     blockType: command
     text: "initialize terminal"
@@ -52,9 +36,9 @@ blocks:
   - opcode: clearTerminal
     blockType: command
     text: "clear terminal"
+
   - "---"
-  - blockType: label
-    text: "Prompt"
+
   - opcode: promptUser
     blockType: reporter
     text: "prompt [TEXT]"
@@ -62,9 +46,12 @@ blocks:
       TEXT:
         type: string
         defaultValue: "Enter command: "
+  - opcode: cancelPrompt
+    blockType: command
+    text: "cancel pending prompts"
+
   - "---"
-  - blockType: label
-    text: "Logging & Filters"
+
   - opcode: logMessage
     blockType: command
     text: "log [LEVEL] scope [SCOPE] [TEXT]"
@@ -104,9 +91,9 @@ blocks:
         type: string
         menu: onOff
         defaultValue: "off"
+
   - "---"
-  - blockType: label
-    text: "Formatting"
+
   - opcode: boxText
     blockType: command
     text: "box [TEXT]"
@@ -124,9 +111,9 @@ blocks:
       TEXT:
         type: string
         defaultValue: "Section"
+
   - "---"
-  - blockType: label
-    text: "Output & Themes"
+
   - opcode: writeToTerminal
     blockType: command
     text: "write [TEXT] to terminal"
@@ -148,4 +135,3 @@ blocks:
       THEME:
         type: string
         menu: themes
-        defaultValue: "atom-one-dark"

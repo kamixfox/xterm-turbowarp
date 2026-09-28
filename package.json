@@ -10,6 +10,6 @@
     "build": "twext build"
   },
   "devDependencies": {
-    "@twext/twext": "^0.3.0"
+    "@twext/twext": "^1.0.0"
   }
 }
