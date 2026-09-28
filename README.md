@@ -1,0 +1,39 @@
+# 📦 Xterm for TurboWarp
+
+![version](https://twexts.sdisk.us/api/v1/badge/@kamixfox/xterm/version) ![downloads](https://twexts.sdisk.us/api/v1/badge/@kamixfox/xterm/downloads) ![license](https://twexts.sdisk.us/api/v1/badge/@kamixfox/xterm/license)
+
+> A terminal integrated with the Scratch stage that allows for input and output. Powered by Xterm.
+
+## 🌟 Highlights
+
+- Powered by Xterm, a reliable package for creating a virtual terminal in the browser.
+- The extension is simple and easy to use. There's no need to learn ANSI codes, the extension does all the work for you.
+- Accepts input! You can prompt your users for input in the stage with a reporter block.
+
+## ℹ️ Overview
+
+> [!IMPORTANT]
+>
+> **Known issue:** You must be online to use this extension, because it must fetch Xterm's code to render the terminal.
+
+This extension replaces the Scratch stage with a virtual terminal, powered by Xterm. It is not a debugging tool, it's designed for operating systems in Scratch instead.
+
+### ✍️ Authors
+
+- **Main Developer:** [@kamixfox](https://github.com/kamixfox)
+
+## ⬇️ Installation
+
+Paste this URL into TurboWarp under Add Extension → Custom Extension:
+
+```text
+https://twexts.sdisk.us/api/v1/@kamixfox/xterm/versions/latest/download
+```
+
+Or, if you prefer to use the TwextHub web UI, you can [download it there instead](https://twexts.sdisk.us/ext/kamixfox/xterm).
+
+## 💭 Feedback and Contributing
+
+Discussions are turned off here, just open an issue if you have a question, or if you find a bug/a new feature to add.
+
+If you want to contribute to this project, feel free! People like you make smaller projects like this thrive.
