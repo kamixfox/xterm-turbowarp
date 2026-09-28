@@ -1,0 +1,15 @@
+{
+  "name": "xterm-turbowarp",
+  "version": "0.1.0",
+  "description": "Xterm, for TurboWarp",
+  "license": "Apache-2.0",
+  "author": "Kamix Fox",
+  "type": "module",
+  "scripts": {
+    "validate": "twext validate",
+    "build": "twext build"
+  },
+  "devDependencies": {
+    "@twext/twext": "^1.0.0"
+  }
+}
