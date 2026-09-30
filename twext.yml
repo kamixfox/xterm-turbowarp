@@ -1,5 +1,5 @@
-name: "xterm"
-version: "0.1.0"
+name: "Xterm"
+version: "0.1.1"
 description: "A terminal emulator overlay for the stage, powered by xterm.js."
 author: "Kamix Fox"
 license: "Apache-2.0"
