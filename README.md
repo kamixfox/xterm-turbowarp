@@ -1,6 +1,6 @@
 # 📦 Xterm for TurboWarp
 
-![version](https://twexts.sdisk.us/api/v1/badge/@kamixfox/xterm/version) ![downloads](https://twexts.sdisk.us/api/v1/badge/@kamixfox/xterm/downloads) ![license](https://twexts.sdisk.us/api/v1/badge/@kamixfox/xterm/license)
+![version](https://twexts.sdisk.us/api/v2/badge/@kamixfox/xterm/version) ![downloads](https://twexts.sdisk.us/api/v2/badge/@kamixfox/xterm/downloads) ![license](https://twexts.sdisk.us/api/v2/badge/@kamixfox/xterm/license)
 
 > A terminal integrated with the Scratch stage that allows for input and output. Powered by Xterm.
 
@@ -27,7 +27,7 @@ This extension replaces the Scratch stage with a virtual terminal, powered by Xt
 Paste this URL into TurboWarp under Add Extension → Custom Extension:
 
 ```text
-https://twexts.sdisk.us/api/v1/@kamixfox/xterm/versions/latest/download
+https://twexts.sdisk.us/api/v2/@kamixfox/xterm/versions/latest/download
 ```
 
 Or, if you prefer to use the TwextHub web UI, you can [download it there instead](https://twexts.sdisk.us/ext/kamixfox/xterm).

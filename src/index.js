@@ -43,12 +43,6 @@ export const blocks = {
  * may only reference these names plus browser globals and `Scratch`.
  */
 export function setup() {
-  // Keep a comment as the first line: the compiler trims the setup source before
-  // dedenting it, so without this the guard below is emitted out of alignment.
-  if (!Scratch.extensions.unsandboxed) {
-    throw new Error("Xterm must run unsandboxed: it draws a terminal over the stage.");
-  }
-
   const ANSI = {
     RESET: "\x1b[0m",
     BOLD: "\x1b[1m",

@@ -1,6 +1,6 @@
 {
   "name": "xterm-turbowarp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Xterm, for TurboWarp",
   "license": "Apache-2.0",
   "author": "Kamix Fox",
@@ -10,6 +10,6 @@
     "build": "twext build"
   },
   "devDependencies": {
-    "@twext/twext": "^1.1.0"
+    "@twextjs/twext": "^2.0.0"
   }
 }
