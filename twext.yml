@@ -1,5 +1,5 @@
 name: "Xterm"
-version: "0.1.1"
+version: "0.1.2"
 description: "A terminal emulator overlay for the stage, powered by xterm.js."
 author: "Kamix Fox"
 license: "Apache-2.0"
@@ -12,6 +12,7 @@ extension:
   name: "Xterm"
   className: "XtermExtension"
   color1: "#61afef"
+  isUnsandboxed: true
   menus:
     themes:
       acceptReporters: true
